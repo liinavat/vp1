@@ -41,4 +41,4 @@ const partOfDay = function(){
 }
 
 //esimene on mida expordin ja teine on, mis välja läheb
-module.exports = {weekDayEt: dayNamesEt, monthsEt: monthNamesEt, dateEt: dateEt, timeEt: getCurrentTime, weekDayEt: getCurrentDay};
+module.exports = {weekDayNamesEt: dayNamesEt, monthsEt: monthNamesEt, dateEt: dateEt, timeEt: getCurrentTime, weekDayEt: getCurrentDay};
