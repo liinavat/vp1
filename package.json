@@ -1,0 +1,23 @@
+{
+  "name": "vp1",
+  "version": "1.0.0",
+  "description": "veebiprogrameerimise projekt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://liinavat@github.com/liinavat/vp1.git"
+  },
+  "author": "Liina Vatsa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liinavat/vp1/issues"
+  },
+  "homepage": "https://github.com/liinavat/vp1#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.0"
+  }
+}
