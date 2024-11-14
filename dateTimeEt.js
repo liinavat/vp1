@@ -1,44 +1,66 @@
-const dayNamesEt = ["pühapäev", "esmaspäev", "teisipäev", "kolmapäev", "neljapäev", "reede", "laupäev"];
+const weekdayNamesEt = ["pühapäev", "esmaspäev", "teisipäev", "kolmapäev", "neljapäev", "reede", "laupäev"];
 const monthNamesEt = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
 
 
-const dateEt = function(){
+const dateFormatted = function(){	
 	let timeNow = new Date();
-	//console.log("Praegu on:" + timeNow);
+	//let specDate = new Date("12-27-1939");
 	let dateNow = timeNow.getDate();
 	let monthNow = timeNow.getMonth();
 	let yearNow = timeNow.getFullYear();
-	//console.log("Praegu on:" + dateNow + "." + monthNow + yearNow)
-	//console.log("Praegu on:" + dateNow + "." + monthNamesEt[monthNow] + "." + yearNow);
-	const dayNamesEt = ["pühapäev", "esmaspäev", "teisipäev", "kolmapäev", "neljapäev", "reede", "laupäev"];
-	const monthNamesEt = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"];
-	let dateNowEt = dateNow + ". " + monthNamesEt[monthNow] + " " + yearNow;
-	return dateNowEt;
+	return dateNow + ". " + monthNamesEt[monthNow] + " " + yearNow;
 }
 
-const getCurrentTime = function(){
-	const now = new Date();
-	let hours = now.getHours();
-	let minutes = now.getMinutes();
-	let seconds = now.getSeconds();
-	let Kell = hours + ":" + minutes + ":" + seconds;
-	return Kell;
+const givenDateFormatted = function(gDate){
+	let specDate = new Date(gDate);
+	console.log(monthNamesEt[specDate.getMonth()]);
+	return specDate.getDate() + ". " + monthNamesEt[specDate.getMonth()] + " " + specDate.getFullYear();	
 }
-const getCurrentDay = function(){
-	let now = new Date();
-	let dayIndex = now.getDay();
-	let Days = dayNamesEt[dayIndex];
-	return Days;
+
+const weekDay = function(){
+	let timeNow = new Date();
+	let dayNow = timeNow.getDay();
+	return weekdayNamesEt[dayNow];
+}
+
+const timeFormatted = function(){
+	let timeNow = new Date();
+	let hourNow = timeNow.getHours();
+	let minuteNow = timeNow.getMinutes();
+	let secondNow = timeNow.getSeconds();
+	return hourNow + ":" + minuteNow + ":" + secondNow;
 }
 
 const partOfDay = function(){
-	let dayPart = "suvaline hetk";
-	let timeNow = new date();
-	if(timeNow.getHours >= 8 && timeNow.getHours() <16){
-		dayPart = "kooliaeg"; //vahemikul kl 8-16 annab vastuse, et on tegemist "kooliaeg"
+	let dPart = "suvaline aeg";
+	let hourNow = new Date().getHours();
+	//   OR   ||   AND  &&
+	// >   <    >=  <=    !=   ==    ===
+	if(hourNow > 8 && hourNow <= 16){
+		dPart = "kooliaeg"; 
 	}
-	return dayPart;
+	return dPart;
+}
+
+const daysBetween = function(gDate){
+	notice = "teadmata";
+	let today = new Date();
+	let anotherDay = new Date(gDate);
+	let diff = today - anotherDay;
+	let diffDays = Math.floor(diff / (1000*3600*24));
+	if (today == anotherDay){
+		notice = "täna";
+	}
+	else if(today < anotherDay){
+		notice = Math.abs(diffDays) + "Päeva pärast";
+	}
+	else {
+		notice = diffDays + "päeva tagasi";
+	}
+	return notice;
 }
 
 //esimene on mida expordin ja teine on, mis välja läheb
-module.exports = {weekDayNamesEt: dayNamesEt, monthsEt: monthNamesEt, dateEt: dateEt, timeEt: getCurrentTime, weekDayEt: getCurrentDay};
+module.exports = {dateFormatted: dateFormatted, weekDay: weekDay, timeFormatted: timeFormatted, weekdayNames: weekdayNamesEt, monthNames: monthNamesEt, dayPart: partOfDay, givenDateFormatted: givenDateFormatted, daysBetween: daysBetween};
+
+//tee funktioon, mis tagastab vastava kuupäeva semestri algusest möödas olevast ajast. nt googles "javascript compare two dates/ dates between two dates" : getTime() käsklus. Lahutustehe. Math.round (difference_in_time / (1000*3600*24))
